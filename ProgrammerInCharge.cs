@@ -2,67 +2,87 @@ using System;
 using EmployeeDetails;
 
 
-namespace EmployeeDetailsImplementation{
+namespace EmployeeDetailsImplementation
+{
 
 
-  // class ProgrammerIncharge implementing the interface Employee
-    public class ProgrammerIncharge: IEmployee {
-        String? firtsNameProgrammerIncharge;
-        String? lastNameProgrammerIncharge;
+    // class ProgrammerIncharge implementing the interface Employee
+    public class ProgrammerIncharge : IEmployee
+    {
+        String? firtsName;
+        String? lastName;
         String? activityProgrammerIncharge;
-        String? activityDateStartProgrammerIncharge;
-        String? activityDateFinishProgrammerIncharge;
+        String? activityDateStart;
+        String? activityDateFinish;
 
-        public ProgrammerIncharge(String firtsName, String lastName){
-            firtsNameProgrammerIncharge=firtsName;
-            lastNameProgrammerIncharge=lastName;
-
-        }
-    
-
-        public void SetFirstName(String firtsName){
-            firtsNameProgrammerIncharge=firtsName;
-
-        }
-        public void SetLastName(String lastName){
-            lastNameProgrammerIncharge=lastName;
+        public ProgrammerIncharge(String firtsName, String lastName)
+        {
+            this.firtsName = firtsName;
+            this.lastName = lastName;
 
         }
 
-        public void SetActivity(String activity){
-            activityProgrammerIncharge=activity;
 
-
-        }
-        public void SetActivityDateStart(String activityDateStart){
-            activityDateStartProgrammerIncharge=activityDateStart;
+        public void SetFirstName(String firtsName)
+        {
+            this.firtsName = firtsName;
 
         }
-        public void SetActivityDateFinish(String activityDateFinish){
-            activityDateFinishProgrammerIncharge=activityDateFinish;
+        public void SetLastName(String lastName)
+        {
+            this.lastName = lastName;
 
         }
 
-        public void GetLastName(){
-            Console.Write(lastNameProgrammerIncharge+ " ");
+        public void SetActivity(String activity)
+        {
+            this.activityProgrammerIncharge = activity;
+
 
         }
-        public void GetFirtsName(){
-            Console.Write(firtsNameProgrammerIncharge +" ");
+        public void SetActivityDateStart(String activityDateStart)
+        {
+            this.activityDateStart = activityDateStart;
 
         }
-        public void GetActivity(){
-            Console.Write(activityProgrammerIncharge+ " ");
+        public void SetActivityDateFinish(String activityDateFinish)
+        {
+            this.activityDateFinish = activityDateFinish;
 
         }
-        public void GetActivityDateStart(){
-            Console.Write(activityDateFinishProgrammerIncharge+ " ");
+
+        public void GetLastName()
+        {
+            Console.Write(lastName + " ");
 
         }
-        public void GetActivityDateFinish(){
-            Console.Write(activityDateFinishProgrammerIncharge+ " ");
+        public void GetFirtsName()
+        {
+            Console.Write(firtsName + " ");
 
         }
+        public void GetActivity()
+        {
+            Console.Write(activityProgrammerIncharge + " ");
+
+        }
+        public void GetActivityDateStart()
+        {
+            Console.Write(activityDateStart + " ");
+
+        }
+        public void GetActivityDateFinish()
+        {
+            Console.Write(activityDateFinish + " ");
+
+        }
+        public override string ToString()
+        {
+            return lastName +" " + firtsName +" " + activityProgrammerIncharge +" "+ activityDateFinish + " "+ activityDateFinish + "\n";
+        }
+
+
+
 
 
 

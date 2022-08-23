@@ -1,5 +1,6 @@
 ﻿using System;
 using EmployeeDetailsImplementation;
+using ProjectTeamProgrammerInCharge;
 
 namespace MainClass{
    class Program 
@@ -8,8 +9,15 @@ namespace MainClass{
 
     {
         ProgrammerIncharge p= new ProgrammerIncharge("Maria","Perez");
-        p.GetFirtsName();
-        p.GetLastName();
+        ProgrammerIncharge g= new ProgrammerIncharge("Mario","Pereza");
+
+        ProjectTeam projectTeam=new ProjectTeam();
+        //p.GetFirtsName();
+        //p.GetLastName();
+        projectTeam.SetProjectTeam(p);
+        projectTeam.SetProjectTeam(g);
+
+        projectTeam.GetProjecTeam();
        
       
     }

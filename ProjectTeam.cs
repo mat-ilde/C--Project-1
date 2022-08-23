@@ -10,7 +10,7 @@ namespace ProjectTeamProgrammerInCharge{
     public class ProjectTeam{
 
         private List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
-        private ProgrammerIncharge? programmerIncharge {set;get;}
+        private ProgrammerIncharge? programmer {set;get;}
 
         public ProjectTeam()
         {
@@ -18,16 +18,17 @@ namespace ProjectTeamProgrammerInCharge{
         }
 
         public void SetProjectTeam(ProgrammerIncharge programmer ){
-            programmerIncharge=programmer;
+            this.programmer=programmer;
+            
             listOfProgrammersInCharge.Add(programmer);
 
         }
         public void GetProjecTeam(){
-          foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
-
-            Console.Write(programmer.ToString());
-
-          }
+        foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
+            Console.Write(programmer);
+        }
+          
+        
         }
     }
 
