@@ -28,7 +28,7 @@ namespace ProjectTeamProgrammerInCharge{
         {
             return this.programmer.GetLastName() +","+ " " + this.programmer.GetFirtsName()+"," + " in charge of " + this.programmer.GetActivity() + 
             " from " + this.programmer.GetActivityDateStart() + " to " + this.programmer.GetActivityDateFinish()
-            +"(duration n10,)" + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
+            +"(duration)"  + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
         }
 
         
@@ -39,17 +39,6 @@ namespace ProjectTeamProgrammerInCharge{
           
         
         }
-        public int DurationOfProject(ProgrammerIncharge programmer){
-            DateTime now = DateTime.Now;
-            DateTime then = DateTime.Now.AddDays(-7);
-    
-            
-            programmer.GetActivityDateFinish();
-            programmer.GetActivityDateStart().AddDays(-7);
-            TimeSpan ts = programmer.GetActivityDateFinish() - programmer.GetActivityDateStart().AddDays(-7); 
-            Console.WriteLine(ts);  
-          return 0;
-        }
-      }
+       
 
 }
