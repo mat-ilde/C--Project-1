@@ -20,16 +20,22 @@ namespace MainClass{
           William.SetActivity("Working on MetaVerso");
           DateTime activityDateStartW = new DateTime(2015, 12, 20);
           DateTime activityDateFinishW = new DateTime(2016, 10, 20);
-          Guillermo.SetActivityDateStart(activityDateStartW);
-          Guillermo.SetActivityDateFinish(activityDateFinishW);
-
+          William.SetActivityDateStart(activityDateStartW);
+          William.SetActivityDateFinish(activityDateFinishW);
+          
           ProjectTeam projectTeam=new ProjectTeam();
-          Guillermo.DurationOfProject(Guillermo);
+
           
           projectTeam.SetProjectTeam(Guillermo);
           projectTeam.SetProjectTeam(William);
 
-          //projectTeam.GetProjecTeam();
+          Guillermo.DurationOfProject(Guillermo);
+          //William.DurationOfProject(William);
+          projectTeam.GetProjecTeam();
+
+          
+         
+
         
       }
     }

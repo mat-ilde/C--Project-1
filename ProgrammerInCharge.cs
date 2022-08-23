@@ -76,20 +76,23 @@ namespace EmployeeDetailsImplementation
             return activityDateFinish;
 
         }
+        
+  
+         public Double DurationOfProject(ProgrammerIncharge programmer){
+            DateTime startDateOfProject=programmer.GetActivityDateStart();
+            DateTime finishDateOfProject=programmer.GetActivityDateFinish();
+            startDateOfProject=finishDateOfProject.AddHours(-1);
+            
+            TimeSpan ts = finishDateOfProject.Date.Subtract(startDateOfProject.Date) ;
+            //Console.WriteLine(ts.TotalDays + " " + ts.TotalHours);  
+          return (float)ts.TotalDays;
+        }
         public override string ToString()
         {
             return lastName+","+ " " + firtsName+"," + " in charge of " + activityProgrammerIncharge + " from " + activityDateStart + " to " + activityDateFinish
-            +"(duration n10,)" + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
+            +"(duration " + this.DurationOfProject(this) + ")," +" this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
         }
-         public TimeSpan DurationOfProject(ProgrammerIncharge programmer){
-            DateTime startDateOfProject=programmer.GetActivityDateStart().AddDays(-7);
-
-            DateTime finishDateOfProject=programmer.GetActivityDateFinish();
-
-            TimeSpan ts = finishDateOfProject.Subtract(startDateOfProject) ;
-            Console.WriteLine(ts.TotalDays + " " + ts.TotalHours);  
-          return ts;
-        }
+        
       
 
 
