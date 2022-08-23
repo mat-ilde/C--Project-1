@@ -1,0 +1,15 @@
+/home/mati/C-Sharp-Project-1/bin/Debug/net6.0/C-Sharp-Project-1
+/home/mati/C-Sharp-Project-1/bin/Debug/net6.0/C-Sharp-Project-1.deps.json
+/home/mati/C-Sharp-Project-1/bin/Debug/net6.0/C-Sharp-Project-1.runtimeconfig.json
+/home/mati/C-Sharp-Project-1/bin/Debug/net6.0/C-Sharp-Project-1.dll
+/home/mati/C-Sharp-Project-1/bin/Debug/net6.0/C-Sharp-Project-1.pdb
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.csproj.AssemblyReference.cache
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.GeneratedMSBuildEditorConfig.editorconfig
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.AssemblyInfoInputs.cache
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.AssemblyInfo.cs
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.csproj.CoreCompileInputs.cache
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.dll
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/refint/C-Sharp-Project-1.dll
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.pdb
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/C-Sharp-Project-1.genruntimeconfig.cache
+/home/mati/C-Sharp-Project-1/obj/Debug/net6.0/ref/C-Sharp-Project-1.dll
