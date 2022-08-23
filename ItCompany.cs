@@ -1,28 +1,43 @@
 ﻿using System;
 using EmployeeDetailsImplementation;
 using ProjectTeamProgrammerInCharge;
+using System.Collections.Generic; 
+
 
 namespace MainClass{
-   class Program 
-  {
-    static void Main(string[] args) 
+   public class Program{
+    
+      static void Main(string[] args){
+        
+          ProgrammerIncharge Guillermo= new ProgrammerIncharge("Guillermo","Garcia");
+          Guillermo.SetActivity("Working on IA");
+          DateTime activityDateStartG = new DateTime(2015, 12, 20);
+          DateTime activityDateFinishG = new DateTime(2016, 10, 20);
+          Guillermo.SetActivityDateStart(activityDateStartG);
+          Guillermo.SetActivityDateFinish(activityDateFinishG);
 
-    {
-        ProgrammerIncharge p= new ProgrammerIncharge("Maria","Perez");
-        ProgrammerIncharge g= new ProgrammerIncharge("Mario","Pereza");
+          ProgrammerIncharge William= new ProgrammerIncharge("William","Willis");
+          William.SetActivity("Working on MetaVerso");
+          DateTime activityDateStartW = new DateTime(2015, 12, 20);
+          DateTime activityDateFinishW = new DateTime(2016, 10, 20);
+          Guillermo.SetActivityDateStart(activityDateStartW);
+          Guillermo.SetActivityDateFinish(activityDateFinishW);
 
-        ProjectTeam projectTeam=new ProjectTeam();
-        //p.GetFirtsName();
-        //p.GetLastName();
-        projectTeam.SetProjectTeam(p);
-        projectTeam.SetProjectTeam(g);
+          ProjectTeam projectTeam=new ProjectTeam();
+          Guillermo.DurationOfProject(Guillermo);
+          
+          projectTeam.SetProjectTeam(Guillermo);
+          projectTeam.SetProjectTeam(William);
 
-        projectTeam.GetProjecTeam();
-       
-      
+          //projectTeam.GetProjecTeam();
+        
+      }
     }
   }
-}
+
+
+
+
 
 
 

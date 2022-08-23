@@ -9,11 +9,11 @@ namespace EmployeeDetailsImplementation
     // class ProgrammerIncharge implementing the interface Employee
     public class ProgrammerIncharge : IEmployee
     {
-        String? firtsName;
-        String? lastName;
-        String? activityProgrammerIncharge;
-        String? activityDateStart;
-        String? activityDateFinish;
+        String firtsName;
+        String lastName;
+        String activityProgrammerIncharge;
+        DateTime activityDateStart;
+        DateTime activityDateFinish;
 
         public ProgrammerIncharge(String firtsName, String lastName)
         {
@@ -40,46 +40,57 @@ namespace EmployeeDetailsImplementation
 
 
         }
-        public void SetActivityDateStart(String activityDateStart)
+        public void SetActivityDateStart(DateTime activityDateStart)
         {
             this.activityDateStart = activityDateStart;
 
         }
-        public void SetActivityDateFinish(String activityDateFinish)
+        public void SetActivityDateFinish(DateTime activityDateFinish)
         {
             this.activityDateFinish = activityDateFinish;
 
         }
 
-        public void GetLastName()
+        public String GetLastName()
         {
-            Console.Write(lastName + " ");
+            return  lastName;
+            
+        }
+        public String GetFirtsName()
+        {
+            return  firtsName ;
 
         }
-        public void GetFirtsName()
+        public String GetActivity()
         {
-            Console.Write(firtsName + " ");
+            return activityProgrammerIncharge;
 
         }
-        public void GetActivity()
+        public DateTime GetActivityDateStart()
         {
-            Console.Write(activityProgrammerIncharge + " ");
+           return activityDateStart;
 
         }
-        public void GetActivityDateStart()
+        public DateTime GetActivityDateFinish()
         {
-            Console.Write(activityDateStart + " ");
-
-        }
-        public void GetActivityDateFinish()
-        {
-            Console.Write(activityDateFinish + " ");
+            return activityDateFinish;
 
         }
         public override string ToString()
         {
-            return lastName +" " + firtsName +" " + activityProgrammerIncharge +" "+ activityDateFinish + " "+ activityDateFinish + "\n";
+            return lastName+","+ " " + firtsName+"," + " in charge of " + activityProgrammerIncharge + " from " + activityDateStart + " to " + activityDateFinish
+            +"(duration n10,)" + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
         }
+         public TimeSpan DurationOfProject(ProgrammerIncharge programmer){
+            DateTime startDateOfProject=programmer.GetActivityDateStart().AddDays(-7);
+
+            DateTime finishDateOfProject=programmer.GetActivityDateFinish();
+
+            TimeSpan ts = finishDateOfProject.Subtract(startDateOfProject) ;
+            Console.WriteLine(ts.TotalDays + " " + ts.TotalHours);  
+          return ts;
+        }
+      
 
 
 
