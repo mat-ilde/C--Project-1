@@ -13,6 +13,7 @@ namespace EmployeeDetailsImplementation
     {
         private String firtsName;
         private String lastName;
+       
         private String activityProgrammerIncharge;
         private List<String> activityDateStart=new List<String>();
         private List<String> activityDateFinish=new List<String>();
@@ -37,6 +38,7 @@ namespace EmployeeDetailsImplementation
 
         }
 
+       
         public void AddActivity(String activity)
         {
             this.activityProgrammerIncharge = activity;
@@ -45,20 +47,18 @@ namespace EmployeeDetailsImplementation
         }
         public void AddActivityDateStart(String year, String month, String day)
         {
+            
             this.activityDateStart.Add(year);
             this.activityDateStart.Add(month);
             this.activityDateStart.Add(day);
 
-
-            /*this.activityDateStart[1] = month;
-            this.activityDateStart[2] = year;*/
-
         }
         public void AddActivityDateFinish(String year, String month, String day)
-        {
+        {   
+             
             this.activityDateFinish.Add(year);
             this.activityDateFinish.Add(month);
-            this.activityDateFinish.Add(year);
+            this.activityDateFinish.Add(day);
 
         }
 
@@ -72,6 +72,7 @@ namespace EmployeeDetailsImplementation
             return  firtsName ;
 
         }
+       
         public String GetActivity()
         {
             return activityProgrammerIncharge;
@@ -84,46 +85,58 @@ namespace EmployeeDetailsImplementation
             
             foreach(String date in activityDateStart){
                 
-                startDate = startDate+date+" ";
+                startDate = startDate+date+"/";
                 
             }
            
-           return startDate + " \n";
+           return startDate + " ";
 
         }
         public String GetActivityDateFinish()
         {
-            String finishDate="";
-            //string myString="";
-            
-            foreach(String date in activityDateStart){
+            String finishDate="";            
+            foreach(String date in activityDateFinish){
                 
-                finishDate = finishDate+date+" ";
+                finishDate = finishDate+date+"/ ";
                 
             }
            
-           return finishDate + " \n";
+           return finishDate + " ";
 
         }
        
   
-        public int DurationOfProject(ProgrammerIncharge programmer){
-            /*DateTime startDateOfProject=programmer.GetActivityDateStart();
-            DateTime finishDateOfProject=programmer.GetActivityDateFinish();
-            startDateOfProject=finishDateOfProject.AddHours(-1);
-            
-            TimeSpan ts = finishDateOfProject.Date.Subtract(startDateOfProject.Date) ;
-            //Console.WriteLine(ts.TotalDays + " " + ts.TotalHours);  */
-          return 0;//(float)ts.TotalDays;
+        public int GetDurationOfProject(){
+
+            String startDateProject=GetActivityDateStart();
+            String finishDateProject=GetActivityDateFinish();
+            String startDayProject="";
+            String finishDayProject="";
+
+            string[] startDates = startDateProject.Split(new[] { "/" }, StringSplitOptions.None);
+            startDayProject=startDates[2];
+            string[] FinishDates = finishDateProject.Split(new[] { "/" }, StringSplitOptions.None);
+            finishDayProject=FinishDates[2];
+
+
+            int startDayToInt = Int32.Parse(startDayProject);
+            int finishDayToInt = Int32.Parse(finishDayProject);
+
+            int nDaysOfTheProject=finishDayToInt-startDayToInt;
+
+
+          return nDaysOfTheProject;
         }
         public override string ToString()
-        {
-            return lastName+","+ " " + firtsName+"," + " in charge of " + activityProgrammerIncharge + " from " + activityDateStart + " to " + activityDateFinish
-            +"(duration " + this.DurationOfProject(this) + ")," +" this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
+        {   
+            //from 1/07/2022 to 21/7/2022  (duration = 21 days) this month=31 days
+
+            return GetLastName() +","+ " " + GetFirtsName() +"," + " in charge of " + GetActivity() + " from " + GetActivityDateStart() + " to " + GetActivityDateFinish()
+            +"(duration = " + GetDurationOfProject() + " days " + ")," + " this month = 31 days  "  + "(total cost = n12 $) " +"\n";
         }
         
       
-
+    
 
 
 

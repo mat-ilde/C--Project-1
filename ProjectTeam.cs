@@ -30,19 +30,21 @@ namespace ProjectTeamProgrammerInCharge{
                 
                 String programmerString=programmer.ToString();
                 projectTeamString=projectTeamString+programmerString;
+                //Console.Write(projectTeamString+ "fulltime Team: " + GetTypeofJob());
                 
             }
-            return projectTeamString +"fulltime Team:";
+            return projectTeamString + " fulltime Team : " + GetTypeofJob() +" ";
         }
         
         public  List<ProgrammerIncharge> GetListOfProgrammerInCharge (){
             return listOfProgrammersInCharge;
         }
+        //fulltime or part-time
         public void AddTypeofJob(Boolean typeOfJob){
             this.fullTime=typeOfJob;
         }
         public Boolean GetTypeofJob(){
-            return fullTime;
+            return fullTime ;
         }
       
         public void GetProjecTeam(){

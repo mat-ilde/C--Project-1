@@ -8,28 +8,48 @@ namespace MainClass{
    public class Program{
     
       static void Main(string[] args){
+
         
         ProgrammerIncharge Guillermo= new ProgrammerIncharge("Guillermo","Garcia");
         Guillermo.AddActivity("Working on IA");
-        Guillermo.AddActivityDateStart("2015","12","20");
-        Guillermo.AddActivityDateFinish("2016","10","20");
+        Guillermo.AddActivityDateStart("2015","12","1");
+        Guillermo.AddActivityDateFinish("2015","12","20");
 
         ProgrammerIncharge William= new ProgrammerIncharge("William","Willis");
-        William.AddActivity("Working on MetaVerso");
-        William.AddActivityDateStart("2015","12","20");
-        William.AddActivityDateFinish("2016","10","20");
+        William.AddActivity("Working on IA");
+        William.AddActivityDateStart("2015","12","1");
+        William.AddActivityDateFinish("2015","12","20");
 
+        ProjectTeam projectTeamPartTime=new ProjectTeam(false);
+        
+        projectTeamPartTime.AddProgrammer(Guillermo);
+        projectTeamPartTime.AddProgrammer(William);
+        
 
         
+        ProgrammerIncharge Mary= new ProgrammerIncharge("Mary","Aldana");
+        Mary.AddActivity("Working on IA");
+        Mary.AddActivityDateStart("2014","10","1");
+        Mary.AddActivityDateFinish("2014","10","20");
+        
+        ProgrammerIncharge Amelia= new ProgrammerIncharge("Amelia","Perez");
+        Amelia.AddActivity("Working on Metaverse");
+        Amelia.AddActivityDateStart("2014","10","1");
+        Amelia.AddActivityDateFinish("2014","10","20");
+
         ProjectTeam projectTeamFullTime=new ProjectTeam(true);
-
         
-        projectTeamFullTime.AddProgrammer(Guillermo);
-        projectTeamFullTime.AddProgrammer(William);
+        projectTeamFullTime.AddProgrammer(Mary);
+        projectTeamFullTime.AddProgrammer(Amelia);
+        
 
-        Guillermo.DurationOfProject(Guillermo);
-        //William.DurationOfProject(William);
-        Console.Write(William.GetActivityDateStart());
+
+
+        //Guillermo.DurationOfProject(Guillermo);
+        //William.DurationOfProject();
+        Console.Write(projectTeamFullTime.ToString());
+        //projectTeamFullTime.ToString();
+
 
           
          
