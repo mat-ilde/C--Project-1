@@ -23,29 +23,29 @@ namespace EmployeeDetailsImplementation
         }
 
 
-        public void SetFirstName(String firtsName)
+        public void AddFirstName(String firtsName)
         {
             this.firtsName = firtsName;
 
         }
-        public void SetLastName(String lastName)
+        public void AddLastName(String lastName)
         {
             this.lastName = lastName;
 
         }
 
-        public void SetActivity(String activity)
+        public void AddActivity(String activity)
         {
             this.activityProgrammerIncharge = activity;
 
 
         }
-        public void SetActivityDateStart(DateTime activityDateStart)
+        public void AddActivityDateStart(DateTime activityDateStart)
         {
             this.activityDateStart = activityDateStart;
 
         }
-        public void SetActivityDateFinish(DateTime activityDateFinish)
+        public void AddActivityDateFinish(DateTime activityDateFinish)
         {
             this.activityDateFinish = activityDateFinish;
 

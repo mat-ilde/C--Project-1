@@ -10,7 +10,6 @@ namespace ProjectTeamProgrammerInCharge{
     public class ProjectTeam{
 
         private List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
-        private ProgrammerIncharge programmer {set;get;}
         private Boolean fullTime{set;get;}
 
         public ProjectTeam()
@@ -18,17 +17,30 @@ namespace ProjectTeamProgrammerInCharge{
             
         }
 
-        public void SetProjectTeam(ProgrammerIncharge programmer ){
-            this.programmer=programmer;
+        public void AddProjectTeam(ProgrammerIncharge programmer ){
             
             listOfProgrammersInCharge.Add(programmer);
 
         }
-         public override string ToString()
-        {
-            return this.programmer.GetLastName() +","+ " " + this.programmer.GetFirtsName()+"," + " in charge of " + this.programmer.GetActivity() + 
-            " from " + this.programmer.GetActivityDateStart() + " to " + this.programmer.GetActivityDateFinish()
-            +"(duration)"  + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";
+         
+        public override string ToString() { 
+            String projectTeamString="";
+            
+            
+            foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
+                
+                String programmerString=programmer.ToString();
+                projectTeamString=projectTeamString+programmerString;
+
+                
+                /*return programmer.GetLastName() +","+ " " + programmer.GetFirtsName()+"," + " in charge of " + programmer.GetActivity() + 
+                " from " + programmer.GetActivityDateStart() + " to " + programmer.GetActivityDateFinish()
+                +"(duration)"  + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";*/
+                
+            }
+            return projectTeamString +" ";
+       
+           
         }
 
         

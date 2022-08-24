@@ -10,28 +10,28 @@ namespace MainClass{
       static void Main(string[] args){
         
           ProgrammerIncharge Guillermo= new ProgrammerIncharge("Guillermo","Garcia");
-          Guillermo.SetActivity("Working on IA");
+          Guillermo.AddActivity("Working on IA");
           DateTime activityDateStartG = new DateTime(2015, 12, 20);
           DateTime activityDateFinishG = new DateTime(2016, 10, 20);
-          Guillermo.SetActivityDateStart(activityDateStartG);
-          Guillermo.SetActivityDateFinish(activityDateFinishG);
+          Guillermo.AddActivityDateStart(activityDateStartG);
+          Guillermo.AddActivityDateFinish(activityDateFinishG);
 
           ProgrammerIncharge William= new ProgrammerIncharge("William","Willis");
-          William.SetActivity("Working on MetaVerso");
+          William.AddActivity("Working on MetaVerso");
           DateTime activityDateStartW = new DateTime(2015, 12, 20);
           DateTime activityDateFinishW = new DateTime(2016, 10, 20);
-          William.SetActivityDateStart(activityDateStartW);
-          William.SetActivityDateFinish(activityDateFinishW);
+          William.AddActivityDateStart(activityDateStartW);
+          William.AddActivityDateFinish(activityDateFinishW);
           
           ProjectTeam projectTeam=new ProjectTeam();
 
           
-          projectTeam.SetProjectTeam(Guillermo);
-          projectTeam.SetProjectTeam(William);
+          projectTeam.AddProjectTeam(Guillermo);
+          projectTeam.AddProjectTeam(William);
 
           Guillermo.DurationOfProject(Guillermo);
           //William.DurationOfProject(William);
-          projectTeam.GetProjecTeam();
+          Console.Write(projectTeam.ToString());
 
           
          
