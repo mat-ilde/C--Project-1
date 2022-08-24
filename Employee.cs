@@ -7,18 +7,19 @@ namespace EmployeeDetails
   {
 
     //assigning lastname
-    void AddLastName(String lastName);
+    public void AddLastName(String lastName);
     //assigning firtsname
     public void AddFirstName(String firtsName);
     public void AddActivity(String activity);
-    public void AddActivityDateStart(DateTime activityDateStart);
-    public void AddActivityDateFinish(DateTime activityDateFinish);
+    
+    public void AddActivityDateStart(String year, String month, String day);
+    public void AddActivityDateFinish(String year, String month, String day);
 
     public String GetLastName();
     public String GetFirtsName();
     public String GetActivity();
-    public DateTime GetActivityDateStart();
-    public DateTime GetActivityDateFinish();
+    public String GetActivityDateStart();
+    public String GetActivityDateFinish();
 
   }
 

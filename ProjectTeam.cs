@@ -10,14 +10,14 @@ namespace ProjectTeamProgrammerInCharge{
     public class ProjectTeam{
 
         private List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
-        private Boolean fullTime{set;get;}
+        private Boolean fullTime;
 
-        public ProjectTeam()
-        {
+        public ProjectTeam(Boolean fullTime){
+            this.fullTime=fullTime;
             
         }
 
-        public void AddProjectTeam(ProgrammerIncharge programmer ){
+        public void AddProgrammer(ProgrammerIncharge programmer ){
             
             listOfProgrammersInCharge.Add(programmer);
 
@@ -26,28 +26,29 @@ namespace ProjectTeamProgrammerInCharge{
         public override string ToString() { 
             String projectTeamString="";
             
-            
             foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
                 
                 String programmerString=programmer.ToString();
                 projectTeamString=projectTeamString+programmerString;
-
-                
-                /*return programmer.GetLastName() +","+ " " + programmer.GetFirtsName()+"," + " in charge of " + programmer.GetActivity() + 
-                " from " + programmer.GetActivityDateStart() + " to " + programmer.GetActivityDateFinish()
-                +"(duration)"  + " this month:" + " n11 days " + "(total cost = n12 $) " +"\n";*/
                 
             }
-            return projectTeamString +" ";
-       
-           
+            return projectTeamString +"fulltime Team:";
         }
-
         
+        public  List<ProgrammerIncharge> GetListOfProgrammerInCharge (){
+            return listOfProgrammersInCharge;
+        }
+        public void AddTypeofJob(Boolean typeOfJob){
+            this.fullTime=typeOfJob;
+        }
+        public Boolean GetTypeofJob(){
+            return fullTime;
+        }
+      
         public void GetProjecTeam(){
-          foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
+            foreach(ProgrammerIncharge programmer in listOfProgrammersInCharge){
               Console.Write(programmer);
-          }
+            }
           
         
         }
