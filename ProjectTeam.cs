@@ -1,6 +1,9 @@
 using System;
 using EmployeeDetailsImplementation;
 using System.Collections.Generic; 
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
 
 
 namespace ProjectTeamProgrammerInCharge{
@@ -9,8 +12,14 @@ namespace ProjectTeamProgrammerInCharge{
   // class ProgrammerIncharge implementing the interface Employee
     public class ProjectTeam{
 
-        private List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
+       [XmlElement(
+            ElementName = "Members")]
+        public List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
         private Boolean fullTime;
+
+        public ProjectTeam(){
+           
+        }
 
         public ProjectTeam(Boolean fullTime){
             this.fullTime=fullTime;
@@ -30,7 +39,6 @@ namespace ProjectTeamProgrammerInCharge{
                 
                 String programmerString=programmer.ToString();
                 projectTeamString=projectTeamString+programmerString;
-                //Console.Write(projectTeamString+ "fulltime Team: " + GetTypeofJob());
                 
             }
             return projectTeamString + " fulltime Team : " + GetTypeofJob() +" ";
@@ -53,6 +61,14 @@ namespace ProjectTeamProgrammerInCharge{
             }
           
         
+        }
+         public void GetSerialization(ProjectTeam team, String fileName){
+
+            var serializer = new XmlSerializer(typeof(ProjectTeam));
+            using (var writer = new StreamWriter(fileName)){
+        
+                serializer.Serialize(writer, team);
+            }
         }
     }   
 

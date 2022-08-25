@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectTeam xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Members>
+        <firtsName>Mary</firtsName>
+        <lastName>Aldana</lastName>
+        <activityProgrammerIncharge>Working on Metaverse</activityProgrammerIncharge>
+        <activityDateStart>
+            <string>2014</string>
+            <string>10</string>
+            <string>1</string>
+        </activityDateStart>
+        <activityDateFinish>
+            <string>2014</string>
+            <string>10</string>
+            <string>20</string>
+        </activityDateFinish>
+    </Members>
+    <Members>
+        <firtsName>Amelia</firtsName>
+        <lastName>Perez</lastName>
+        <activityProgrammerIncharge>Working on Metaverse</activityProgrammerIncharge>
+        <activityDateStart>
+            <string>2014</string>
+            <string>10</string>
+            <string>1</string>
+        </activityDateStart>
+        <activityDateFinish>
+            <string>2014</string>
+            <string>10</string>
+            <string>20</string>
+        </activityDateFinish>
+    </Members>
+</ProjectTeam>

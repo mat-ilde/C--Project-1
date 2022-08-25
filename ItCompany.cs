@@ -2,10 +2,15 @@
 using EmployeeDetailsImplementation;
 using ProjectTeamProgrammerInCharge;
 using System.Collections.Generic; 
+using System.Xml.Serialization;  
+using System.IO;  
+
 
 
 namespace MainClass{
-   public class Program{
+   public class ItCompany{
+
+    
     
       static void Main(string[] args){
 
@@ -28,7 +33,7 @@ namespace MainClass{
 
         
         ProgrammerIncharge Mary= new ProgrammerIncharge("Mary","Aldana");
-        Mary.AddActivity("Working on IA");
+        Mary.AddActivity("Working on Metaverse");
         Mary.AddActivityDateStart("2014","10","1");
         Mary.AddActivityDateFinish("2014","10","20");
         
@@ -42,12 +47,15 @@ namespace MainClass{
         projectTeamFullTime.AddProgrammer(Mary);
         projectTeamFullTime.AddProgrammer(Amelia);
         
+        projectTeamFullTime.GetSerialization(projectTeamFullTime, "projectTeamFullTime.xml");
+        projectTeamPartTime.GetSerialization(projectTeamPartTime, "projectTeamPartTime.xml");
+
 
 
 
         //Guillermo.DurationOfProject(Guillermo);
         //William.DurationOfProject();
-        Console.Write(projectTeamFullTime.ToString());
+        //Console.Write(projectTeamFullTime.ToString());
         //projectTeamFullTime.ToString();
 
 

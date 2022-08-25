@@ -1,6 +1,9 @@
 using System;
 using EmployeeDetails;
 using System.Collections.Generic; 
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
 
 
 
@@ -11,13 +14,22 @@ namespace EmployeeDetailsImplementation
     // class ProgrammerIncharge implementing the interface Employee
     public class ProgrammerIncharge : IEmployee
     {
-        private String firtsName;
-        private String lastName;
+        public String firtsName;
+        public String lastName;
        
-        private String activityProgrammerIncharge;
-        private List<String> activityDateStart=new List<String>();
-        private List<String> activityDateFinish=new List<String>();
+        public String activityProgrammerIncharge;
 
+        public List<String> activityDateStart=new List<String>();
+        
+        
+        public List<String> activityDateFinish=new List<String>();
+        /*public String day;
+        public String month;
+        public String year;*/
+       
+        public ProgrammerIncharge(){
+
+        }
 
         public ProgrammerIncharge(String firtsName, String lastName)
         {
@@ -37,6 +49,19 @@ namespace EmployeeDetailsImplementation
             this.lastName = lastName;
 
         }
+         /*public void AddYear(String year)
+        {
+            this.year = year;
+        }
+        public void AddMonth(String month)
+        {
+            this.month = month;
+        }
+
+        public void AddDay(String day)
+        {
+            this.day = day;
+        }*/
 
        
         public void AddActivity(String activity)
@@ -47,7 +72,10 @@ namespace EmployeeDetailsImplementation
         }
         public void AddActivityDateStart(String year, String month, String day)
         {
-            
+            /*this.year=year;
+            this.month=month;
+            this.day=day;*/
+
             this.activityDateStart.Add(year);
             this.activityDateStart.Add(month);
             this.activityDateStart.Add(day);
@@ -55,7 +83,10 @@ namespace EmployeeDetailsImplementation
         }
         public void AddActivityDateFinish(String year, String month, String day)
         {   
-             
+            /*this.year=year;
+            this.month=month;
+            this.day=day;*/
+            
             this.activityDateFinish.Add(year);
             this.activityDateFinish.Add(month);
             this.activityDateFinish.Add(day);
@@ -72,6 +103,24 @@ namespace EmployeeDetailsImplementation
             return  firtsName ;
 
         }
+        /*public String getDay()
+        {
+            return day;
+        }
+
+
+        public String getMonth()
+        {
+            return month;
+        }
+
+    
+
+        public String getYear()
+        {
+            return year;
+        }*/
+
        
         public String GetActivity()
         {
@@ -81,7 +130,6 @@ namespace EmployeeDetailsImplementation
         public String GetActivityDateStart()
         {   
             String startDate="";
-            //string myString="";
             
             foreach(String date in activityDateStart){
                 
@@ -105,7 +153,6 @@ namespace EmployeeDetailsImplementation
 
         }
        
-  
         public int GetDurationOfProject(){
 
             String startDateProject=GetActivityDateStart();
@@ -133,6 +180,14 @@ namespace EmployeeDetailsImplementation
 
             return GetLastName() +","+ " " + GetFirtsName() +"," + " in charge of " + GetActivity() + " from " + GetActivityDateStart() + " to " + GetActivityDateFinish()
             +"(duration = " + GetDurationOfProject() + " days " + ")," + " this month = 31 days  "  + "(total cost = n12 $) " +"\n";
+        }
+        public void GetSerialization(ProgrammerIncharge programmer, String fileName){
+
+            var serializer = new XmlSerializer(typeof(ProgrammerIncharge));
+            using (var writer = new StreamWriter(fileName)){
+        
+                serializer.Serialize(writer, programmer);
+            }
         }
         
       
