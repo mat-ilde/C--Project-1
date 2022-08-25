@@ -12,6 +12,8 @@ namespace EmployeeDetailsImplementation
 
 
     // class ProgrammerIncharge implementing the interface Employee
+    [XmlRoot(ElementName = "ProgrammerIncharge")]
+
     public class ProgrammerIncharge : IEmployee
     {
         public String firtsName;
@@ -181,7 +183,7 @@ namespace EmployeeDetailsImplementation
             return GetLastName() +","+ " " + GetFirtsName() +"," + " in charge of " + GetActivity() + " from " + GetActivityDateStart() + " to " + GetActivityDateFinish()
             +"(duration = " + GetDurationOfProject() + " days " + ")," + " this month = 31 days  "  + "(total cost = n12 $) " +"\n";
         }
-        public void GetSerialization(ProgrammerIncharge programmer, String fileName){
+        public void GetXmlFile(ProgrammerIncharge programmer, String fileName){
 
             var serializer = new XmlSerializer(typeof(ProgrammerIncharge));
             using (var writer = new StreamWriter(fileName)){

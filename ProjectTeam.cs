@@ -10,12 +10,14 @@ namespace ProjectTeamProgrammerInCharge{
 
 
   // class ProgrammerIncharge implementing the interface Employee
+  [XmlRoot(ElementName = "ProjectTeam")]
+
     public class ProjectTeam{
 
        [XmlElement(
             ElementName = "Members")]
         public List<ProgrammerIncharge> listOfProgrammersInCharge=new List<ProgrammerIncharge>();
-        private Boolean fullTime;
+        public Boolean fullTime;
 
         public ProjectTeam(){
            
@@ -62,12 +64,32 @@ namespace ProjectTeamProgrammerInCharge{
           
         
         }
-         public void GetSerialization(ProjectTeam team, String fileName){
+         public void GetXmlFile(ProjectTeam team, String fileName){
 
             var serializer = new XmlSerializer(typeof(ProjectTeam));
             using (var writer = new StreamWriter(fileName)){
         
                 serializer.Serialize(writer, team);
+            }
+        }
+        public void ReadXMLFileUsingXMLDocument()
+        {
+            XmlDocument xmlDcoument = new XmlDocument();
+            xmlDcoument.Load(@"projectTeamPartTime.xml");
+            var navigator = xmlDcoument.CreateNavigator();
+            var expr = navigator.Compile("/ProjectTeam/Members/(activityDateStart");
+            var count = navigator.Evaluate(expr); // 3 (nodes)
+
+            XmlNodeList xmlNodeList = xmlDcoument.DocumentElement.SelectNodes("/ProjectTeam/Members");
+            XmlNodeList xmlNodeListp = xmlDcoument.DocumentElement.SelectNodes("/ProjectTeam/Members/activityDateStart");
+            Console.WriteLine("Output using XMLDocument");
+            foreach (XmlNode xmlNode in xmlNodeListp)
+            {
+                Console.WriteLine("Id of the Employee is : " + xmlNode.SelectSingleNode("firtsName").InnerText);
+                Console.WriteLine("Name of the Employee is : " + xmlNode.SelectSingleNode("lastName").InnerText);
+                Console.WriteLine("Id of the Employee is : " + xmlNode.SelectSingleNode("activityDateStart").InnerText);
+                //Console.WriteLine("Name of the Employee is : " + xmlNode.SelectSingleNode("lastName").InnerText);
+                Console.WriteLine();
             }
         }
     }   

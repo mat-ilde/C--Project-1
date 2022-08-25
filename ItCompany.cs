@@ -4,6 +4,8 @@ using ProjectTeamProgrammerInCharge;
 using System.Collections.Generic; 
 using System.Xml.Serialization;  
 using System.IO;  
+using System.Xml;
+
 
 
 
@@ -47,19 +49,25 @@ namespace MainClass{
         projectTeamFullTime.AddProgrammer(Mary);
         projectTeamFullTime.AddProgrammer(Amelia);
         
-        projectTeamFullTime.GetSerialization(projectTeamFullTime, "projectTeamFullTime.xml");
-        projectTeamPartTime.GetSerialization(projectTeamPartTime, "projectTeamPartTime.xml");
+        /*projectTeamFullTime.GetXmlFile(projectTeamFullTime, "projectTeamFullTime.xml");
+        projectTeamPartTime.GetXmlFile(projectTeamPartTime, "projectTeamPartTime.xml");*/
+
+        projectTeamFullTime.ReadXMLFileUsingXMLDocument();
 
 
+
+       
 
 
         //Guillermo.DurationOfProject(Guillermo);
         //William.DurationOfProject();
         //Console.Write(projectTeamFullTime.ToString());
         //projectTeamFullTime.ToString();
+        
+       
+        
 
-
-          
+      
          
 
         
