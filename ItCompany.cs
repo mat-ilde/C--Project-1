@@ -52,7 +52,8 @@ namespace MainClass{
         /*projectTeamFullTime.GetXmlFile(projectTeamFullTime, "projectTeamFullTime.xml");
         projectTeamPartTime.GetXmlFile(projectTeamPartTime, "projectTeamPartTime.xml");*/
 
-        projectTeamFullTime.ReadXMLFileUsingXMLDocument();
+        projectTeamPartTime.ReadXMLFileUsingXMLDocument();
+        //Console.Write(z);
 
 
 
