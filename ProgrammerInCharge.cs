@@ -1,6 +1,6 @@
 using System;
 using EmployeeDetails;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
@@ -18,18 +18,17 @@ namespace EmployeeDetailsImplementation
     {
         public String firtsName;
         public String lastName;
-       
+
         public String activityProgrammerIncharge;
 
-        public List<String> activityDateStart=new List<String>();
-        
-        
-        public List<String> activityDateFinish=new List<String>();
-        /*public String day;
-        public String month;
-        public String year;*/
-       
-        public ProgrammerIncharge(){
+        [XmlIgnore]
+        public DateTime activityDateStart = new DateTime();
+
+        [XmlIgnore]
+        public DateTime activityDateFinish = new DateTime();
+
+        public ProgrammerIncharge()
+        {
 
         }
 
@@ -39,165 +38,161 @@ namespace EmployeeDetailsImplementation
             this.lastName = lastName;
 
         }
+        //load function as constructor
+        public ProgrammerIncharge(XmlNode node){
+            string firtsName = node.SelectSingleNode("firtsName").InnerText;
+            string lastName = node.SelectSingleNode("lastName").InnerText;
+            this.SetFirstName(firtsName);
+            this.SetLastName(lastName);
+            //using try catch in case the date doesn't exist
+            try
+            {
+                XmlNodeList activityDateStart = node.SelectNodes("activityDateStart");
+                foreach (XmlNode dateStartNode in activityDateStart)
+                {
+                    String date=dateStartNode.InnerText;
+                    this.SetActivityDateStart(date);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+            try{
 
-        public void AddFirstName(String firtsName)
+                XmlNodeList activityDateFinish = node.SelectNodes("activityDateFinish");
+                 foreach (XmlNode dateFinishNode in activityDateFinish)
+                {
+
+                    String  date=dateFinishNode.InnerText;
+                    this.SetActivityDateFinish(date);
+                }
+
+            }catch(Exception ex){
+                Console.Write(ex);
+               
+            }
+            string activity = node.SelectSingleNode("activityProgrammerIncharge").InnerText;
+            this.SetActivity(activity);
+        }
+
+        public void SetFirstName(String firtsName)
         {
             this.firtsName = firtsName;
 
         }
-        public void AddLastName(String lastName)
+        public void SetLastName(String lastName)
         {
             this.lastName = lastName;
 
         }
-         /*public void AddYear(String year)
-        {
-            this.year = year;
-        }
-        public void AddMonth(String month)
-        {
-            this.month = month;
-        }
 
-        public void AddDay(String day)
-        {
-            this.day = day;
-        }*/
-
-       
-        public void AddActivity(String activity)
+        public void SetActivity(String activity)
         {
             this.activityProgrammerIncharge = activity;
 
-
         }
-        public void AddActivityDateStart(String year, String month, String day)
+        public void SetActivityDateStart(String date)
         {
-            /*this.year=year;
-            this.month=month;
-            this.day=day;*/
-
-            this.activityDateStart.Add(year);
-            this.activityDateStart.Add(month);
-            this.activityDateStart.Add(day);
-
-        }
-        public void AddActivityDateFinish(String year, String month, String day)
-        {   
-            /*this.year=year;
-            this.month=month;
-            this.day=day;*/
             
-            this.activityDateFinish.Add(year);
-            this.activityDateFinish.Add(month);
-            this.activityDateFinish.Add(day);
+            this.activityDateStart = DateTime.Parse(date);
+            this.activityDateStart=this.activityDateStart.Date;
+        }
+        public void SetActivityDateFinish(String date)
+        {
+           
+            this.activityDateFinish = DateTime.Parse(date);
+            this.activityDateFinish=activityDateFinish.Date;
+
 
         }
 
         public String GetLastName()
         {
-            return  lastName;
-            
+            return lastName;
+
         }
         public String GetFirtsName()
         {
-            return  firtsName ;
+            return firtsName;
 
         }
-        /*public String getDay()
+      
+        [XmlElement("activityDateStart")]
+        public string activityDateStartString
         {
-            return day;
+            get { return this.activityDateStart.ToString("d"); }
+            set { this.activityDateStart = activityDateStart.Date; }
+            
+        }
+
+        [XmlElement("activityDateFinish")]
+        public string activityDateFinishString
+        {
+            get { return this.activityDateFinish.ToString("d"); }
+            set { this.activityDateFinish = activityDateStart.Date; }
         }
 
 
-        public String getMonth()
-        {
-            return month;
-        }
-
-    
-
-        public String getYear()
-        {
-            return year;
-        }*/
-
-       
         public String GetActivity()
         {
             return activityProgrammerIncharge;
 
         }
-        public String GetActivityDateStart()
-        {   
-            String startDate="";
-            
-            foreach(String date in activityDateStart){
-                
-                startDate = startDate+date+"/";
-                
-            }
-           
-           return startDate + " ";
+
+        public DateTime GetActivityDateStart()
+        {
+            //Console.Write(this.activityDateStart.ToString("d MMM yyyy") + "\n");
+            return this.activityDateStart.Date;
 
         }
-        public String GetActivityDateFinish()
+        public DateTime GetActivityDateFinish()
         {
-            String finishDate="";            
-            foreach(String date in activityDateFinish){
-                
-                finishDate = finishDate+date+"/ ";
-                
-            }
-           
-           return finishDate + " ";
+            return this.activityDateFinish.Date;
 
+        }
+
+        public double GetDurationOfProject()
+        {   
+            double intervalDays=0;
+            DateTime startDateProject = GetActivityDateStart();
+            DateTime finishDateProject = GetActivityDateFinish();
+            TimeSpan totalOfDays = finishDateProject - startDateProject;
+            intervalDays=totalOfDays.Days;
+            
+            return intervalDays;
+
+        
         }
        
-        public int GetDurationOfProject(){
-
-            String startDateProject=GetActivityDateStart();
-            String finishDateProject=GetActivityDateFinish();
-            String startDayProject="";
-            String finishDayProject="";
-
-            string[] startDates = startDateProject.Split(new[] { "/" }, StringSplitOptions.None);
-            startDayProject=startDates[2];
-            string[] FinishDates = finishDateProject.Split(new[] { "/" }, StringSplitOptions.None);
-            finishDayProject=FinishDates[2];
-
-
-            int startDayToInt = Int32.Parse(startDayProject);
-            int finishDayToInt = Int32.Parse(finishDayProject);
-
-            int nDaysOfTheProject=finishDayToInt-startDayToInt;
-
-
-          return nDaysOfTheProject;
-        }
         public override string ToString()
-        {   
-            //from 1/07/2022 to 21/7/2022  (duration = 21 days) this month=31 days
 
-            return GetLastName() +","+ " " + GetFirtsName() +"," + " in charge of " + GetActivity() + " from " + GetActivityDateStart() + " to " + GetActivityDateFinish()
-            +"(duration = " + GetDurationOfProject() + " days " + ")," + " this month = 31 days  "  + "(total cost = n12 $) " +"\n";
+        {
+            string currentMonthName = DateTime.Now.ToString("MMMM");
+            string currentMonthNumber = DateTime.Now.ToString("MM");
+            int currentMonthToInt = Int32.Parse(currentMonthNumber);
+
+            int daysOfCurrentMonth = DateTime.DaysInMonth(2022, currentMonthToInt);
+
+
+            //from 1/07/2022 to 21/7/2022  (duration = 21 days) this month=31 days
+            //this month tiene que ser esta fecha
+
+            return GetLastName() + "," + " " + GetFirtsName() + "," + " in charge of " + GetActivity() + " from " + GetActivityDateStart().ToShortDateString() + " to " + GetActivityDateFinish().ToShortDateString()
+            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + daysOfCurrentMonth + " days " + "(total cost = n12 $) " + "\n";
         }
-        public void GetXmlFile(ProgrammerIncharge programmer, String fileName){
+        public void SaveSystem(ProgrammerIncharge programmer, String fileName)
+        {
 
             var serializer = new XmlSerializer(typeof(ProgrammerIncharge));
-            using (var writer = new StreamWriter(fileName)){
-        
+            using (var writer = new StreamWriter(fileName))
+            {
+
                 serializer.Serialize(writer, programmer);
             }
         }
-        
-      
-    
-
-
-
-
+       
 
     }
 }
