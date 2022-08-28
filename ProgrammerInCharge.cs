@@ -162,25 +162,28 @@ namespace EmployeeDetailsImplementation
             intervalDays=totalOfDays.Days;
             
             return intervalDays;
-
-        
         }
        
         public override string ToString()
 
         {
-            string currentMonthName = DateTime.Now.ToString("MMMM");
-            string currentMonthNumber = DateTime.Now.ToString("MM");
-            int currentMonthToInt = Int32.Parse(currentMonthNumber);
+            string ProjectFinishMonthName = GetActivityDateFinish().ToString("MMMM");
+            string ProjectFinishMonthNumber = GetActivityDateFinish().ToString("MM");
+            int currentMonthToInt = Int32.Parse(ProjectFinishMonthNumber);
+            DateTime finishDateProject = GetActivityDateFinish();
+            int yearFinishproject=finishDateProject.Year;
 
-            int daysOfCurrentMonth = DateTime.DaysInMonth(2022, currentMonthToInt);
+            
+
+            int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, currentMonthToInt);
+            //Console.Write(currentMonthToInt);
 
 
             //from 1/07/2022 to 21/7/2022  (duration = 21 days) this month=31 days
             //this month tiene que ser esta fecha
 
             return GetLastName() + "," + " " + GetFirtsName() + "," + " in charge of " + GetActivity() + " from " + GetActivityDateStart().ToShortDateString() + " to " + GetActivityDateFinish().ToShortDateString()
-            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + daysOfCurrentMonth + " days " + "(total cost = n12 $) " + "\n";
+            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + restOfDaysOfFinihProjectMonth + " days " + "(total cost = n12 $) " + "\n";
         }
         public void SaveSystem(ProgrammerIncharge programmer, String fileName)
         {

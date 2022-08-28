@@ -18,23 +18,19 @@ namespace ProjectTeamProgrammerInCharge
     public class ProjectTeam
     {
         [XmlElement(
-             ElementName = "Members")]
+            ElementName = "Members")]
         public List<ProgrammerIncharge> listOfProgrammersInCharge = new List<ProgrammerIncharge>();
         [XmlElement(
-             ElementName = "FullTime")]
+            ElementName = "FullTime")]
         public bool fullTime;
-
-
-        public bool getFullTime()
-        {
-            return this.fullTime;
-        }
-
-        public void SetfullTime(bool fullTime)
+          public void SetTypeofJob(Boolean fullTime)
         {
             this.fullTime = fullTime;
         }
-
+        public Boolean GetTypeofJob()
+        {
+            return this.fullTime;
+        }
 
         public ProjectTeam()
         {
@@ -46,29 +42,32 @@ namespace ProjectTeamProgrammerInCharge
             this.fullTime = fullTime;
 
         }
-        //load function as constructor
+        //load function as constructor return ProjectTeam from xml file
         public ProjectTeam(XmlNode rootNode)
         {
             String typeOfJobString = rootNode.SelectSingleNode("FullTime").InnerText;
+            bool typeOfJobBool = bool.Parse(typeOfJobString);
 
-            if (typeOfJobString == "1")
+            
+            if (typeOfJobBool == true)
             {
-                this.SetfullTime(true);
+                this.SetTypeofJob(true);
+                
             }
             else
             {
-                this.SetfullTime(false);
+                this.SetTypeofJob(false);
+                
             }
             XmlNodeList xnList = rootNode.SelectNodes("/ProjectTeam/Members");
+            
 
             foreach (XmlNode programmerNode in xnList)
             {
                 ProgrammerIncharge programmer = new ProgrammerIncharge(programmerNode);
                 this.AddProgrammer(programmer);
-
-            }
+            }        
         }
-
         public void AddProgrammer(ProgrammerIncharge programmer)
         {
 
@@ -95,14 +94,7 @@ namespace ProjectTeamProgrammerInCharge
             return listOfProgrammersInCharge;
         }
         //fulltime or part-time
-        public void AddTypeofJob(Boolean typeOfJob)
-        {
-            this.fullTime = typeOfJob;
-        }
-        public Boolean GetTypeofJob()
-        {
-            return fullTime;
-        }
+      
 
         public void SaveSystem(ProjectTeam team, String fileName)
         {
