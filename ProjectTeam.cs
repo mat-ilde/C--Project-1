@@ -23,8 +23,8 @@ namespace ProjectTeamProgrammerInCharge
         [XmlElement(
             ElementName = "FullTime")]
         public bool fullTime;
-         [XmlElement(
-            ElementName = "Cost")]
+        [XmlElement(
+           ElementName = "Cost")]
         public int cost;
 
         public int GetCost()
@@ -36,8 +36,8 @@ namespace ProjectTeamProgrammerInCharge
         {
             this.cost = cost;
         }
-    
-          public void SetTypeofJob(Boolean fullTime)
+        //full-time or part-time
+        public void SetTypeofJob(Boolean fullTime)
         {
             this.fullTime = fullTime;
         }
@@ -54,7 +54,7 @@ namespace ProjectTeamProgrammerInCharge
         public ProjectTeam(bool fullTime, int cost)
         {
             this.fullTime = fullTime;
-            this.cost=cost;
+            this.cost = cost;
 
         }
         //load function as constructor return ProjectTeam from xml file
@@ -63,25 +63,25 @@ namespace ProjectTeamProgrammerInCharge
             String typeOfJobString = rootNode.SelectSingleNode("FullTime").InnerText;
             bool typeOfJobBool = bool.Parse(typeOfJobString);
 
-            
+
             if (typeOfJobBool == true)
             {
                 this.SetTypeofJob(true);
-                
+
             }
             else
             {
                 this.SetTypeofJob(false);
-                
+
             }
             XmlNodeList xnList = rootNode.SelectNodes("/ProjectTeam/Members");
-            
+
 
             foreach (XmlNode programmerNode in xnList)
             {
                 ProgrammerIncharge programmer = new ProgrammerIncharge(programmerNode);
                 this.AddProgrammer(programmer);
-            }        
+            }
         }
         public void AddProgrammer(ProgrammerIncharge programmer)
         {
@@ -101,16 +101,14 @@ namespace ProjectTeamProgrammerInCharge
                 projectTeamString = projectTeamString + programmerString;
 
             }
-            return projectTeamString + " Fulltime Team : " + GetTypeofJob() 
-            + " (total cost= " + GetCost() + " $)" +"\n";
+            return projectTeamString + " Fulltime Team : " + GetTypeofJob()
+            + " (total cost= " + GetCost() + " $)" + "\n";
         }
 
         public List<ProgrammerIncharge> GetListOfProgrammerInCharge()
         {
             return listOfProgrammersInCharge;
         }
-        //fulltime or part-time
-      
 
         public void SaveSystem(ProjectTeam team, String fileName)
         {
@@ -122,20 +120,21 @@ namespace ProjectTeamProgrammerInCharge
             }
 
         }
-        public double UpdateSystem(){
-            TimeSpan totalOfDays=TimeSpan.Zero;
+        //TO GET THE PROJECT DATE UPDATE
+        public void UpdateSystem()
+        {
+            TimeSpan totalOfDays = TimeSpan.Zero;
             foreach (ProgrammerIncharge programmer in listOfProgrammersInCharge)
             {
-                
                 DateTime dateUpdate = programmer.GetActivityDateFinish().AddDays(1);
-                DateTime startDateProject = programmer.GetActivityDateStart();
-                totalOfDays = dateUpdate - startDateProject;
-
+                String dateUpdateString = dateUpdate.ToString();
+                programmer.SetActivityDateFinish(dateUpdateString);
+                Console.Write(dateUpdateString);
             }
-            return  totalOfDays.Days;
+
         }
-       
-        
+
+
     }
 
 }

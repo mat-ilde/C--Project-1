@@ -11,9 +11,9 @@ namespace EmployeeDetailsImplementation
 {
 
 
-    // class ProgrammerIncharge implementing the interface Employee
-    [XmlRoot(ElementName = "ProgrammerIncharge")]
 
+    [XmlRoot(ElementName = "ProgrammerIncharge")]
+    // class ProgrammerIncharge implementing the interface Employee
     public class ProgrammerIncharge : IEmployee
     {
         public String firtsName;
@@ -39,7 +39,8 @@ namespace EmployeeDetailsImplementation
 
         }
         //load function as constructor
-        public ProgrammerIncharge(XmlNode node){
+        public ProgrammerIncharge(XmlNode node)
+        {
             string firtsName = node.SelectSingleNode("firtsName").InnerText;
             string lastName = node.SelectSingleNode("lastName").InnerText;
             this.SetFirstName(firtsName);
@@ -50,7 +51,7 @@ namespace EmployeeDetailsImplementation
                 XmlNodeList activityDateStart = node.SelectNodes("activityDateStart");
                 foreach (XmlNode dateStartNode in activityDateStart)
                 {
-                    String date=dateStartNode.InnerText;
+                    String date = dateStartNode.InnerText;
                     this.SetActivityDateStart(date);
                 }
 
@@ -59,19 +60,22 @@ namespace EmployeeDetailsImplementation
             {
                 Console.Write(ex);
             }
-            try{
+            try
+            {
 
                 XmlNodeList activityDateFinish = node.SelectNodes("activityDateFinish");
-                 foreach (XmlNode dateFinishNode in activityDateFinish)
+                foreach (XmlNode dateFinishNode in activityDateFinish)
                 {
 
-                    String  date=dateFinishNode.InnerText;
+                    String date = dateFinishNode.InnerText;
                     this.SetActivityDateFinish(date);
                 }
 
-            }catch(Exception ex){
+            }
+            catch (Exception ex)
+            {
                 Console.Write(ex);
-               
+
             }
             string activity = node.SelectSingleNode("activityProgrammerIncharge").InnerText;
             this.SetActivity(activity);
@@ -87,7 +91,6 @@ namespace EmployeeDetailsImplementation
             this.lastName = lastName;
 
         }
-
         public void SetActivity(String activity)
         {
             this.activityProgrammerIncharge = activity;
@@ -95,17 +98,15 @@ namespace EmployeeDetailsImplementation
         }
         public void SetActivityDateStart(String date)
         {
-            
+
             this.activityDateStart = DateTime.Parse(date);
-            this.activityDateStart=this.activityDateStart.Date;
+            this.activityDateStart = this.activityDateStart.Date;
         }
         public void SetActivityDateFinish(String date)
         {
-           
+
             this.activityDateFinish = DateTime.Parse(date);
-            this.activityDateFinish=activityDateFinish.Date;
-
-
+            this.activityDateFinish = activityDateFinish.Date;
         }
 
         public String GetLastName()
@@ -118,13 +119,13 @@ namespace EmployeeDetailsImplementation
             return firtsName;
 
         }
-      
+
         [XmlElement("activityDateStart")]
         public string activityDateStartString
         {
             get { return this.activityDateStart.ToString("d"); }
             set { this.activityDateStart = activityDateStart.Date; }
-            
+
         }
 
         [XmlElement("activityDateFinish")]
@@ -133,7 +134,6 @@ namespace EmployeeDetailsImplementation
             get { return this.activityDateFinish.ToString("d"); }
             set { this.activityDateFinish = activityDateStart.Date; }
         }
-
 
         public String GetActivity()
         {
@@ -154,33 +154,23 @@ namespace EmployeeDetailsImplementation
         }
 
         public double GetDurationOfProject()
-        {   
-            double intervalDays=0;
+        {
+            double intervalDays = 0;
             DateTime startDateProject = GetActivityDateStart();
             DateTime finishDateProject = GetActivityDateFinish();
             TimeSpan totalOfDays = finishDateProject - startDateProject;
-            intervalDays=totalOfDays.Days;
-            
+            intervalDays = totalOfDays.Days;
+
             return intervalDays;
         }
-       
+
         public override string ToString()
 
         {
-            string ProjectFinishMonthName = GetActivityDateFinish().ToString("MMMM");
-            string ProjectFinishMonthNumber = GetActivityDateFinish().ToString("MM");
-            int currentMonthToInt = Int32.Parse(ProjectFinishMonthNumber);
-            DateTime finishDateProject = GetActivityDateFinish();
-            int yearFinishproject=finishDateProject.Year;
-
-            
-
-            //int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, currentMonthToInt);
             int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(2022, 8);
 
-
             return GetLastName() + "," + " " + GetFirtsName() + "," + " in charge of " + GetActivity() + " from " + GetActivityDateStart().ToShortDateString() + " to " + GetActivityDateFinish().ToShortDateString()
-            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + restOfDaysOfFinihProjectMonth + " days " + "\n";
+            + " (duration = " + GetDurationOfProject() + " days " + ")," + " this month = " + restOfDaysOfFinihProjectMonth + " days " + "\n";
         }
         public void SaveSystem(ProgrammerIncharge programmer, String fileName)
         {
@@ -192,7 +182,7 @@ namespace EmployeeDetailsImplementation
                 serializer.Serialize(writer, programmer);
             }
         }
-       
+
 
     }
 }

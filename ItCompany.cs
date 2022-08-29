@@ -18,78 +18,54 @@ namespace MainClass
         }
         public void SystemStatusReport()
         {
-            Console.Write("Layout:" + "\n" +"\n");
-            Console.Write("IT COMPANY-Report" + "\n"+ "\n");
+            Console.Write("Layout:" + "\n" + "\n");
+            Console.Write("IT COMPANY-Report" + "\n" + "\n");
 
             string currentMonthNumber = DateTime.Now.ToString("MMMM");
-            string projectStartMonthNameString = "";
-
-            double durationOfProject = 0;
+            DateTime currentMonth = DateTime.Now;
+            string day = currentMonth.Day.ToString();
+            int totalDaysOfTheMonth = DateTime.DaysInMonth(2022, 8);
+            int daysToInt = Convert.ToInt32(day);
+            int daysConsumedByProgrammers = totalDaysOfTheMonth - daysToInt;
 
             int numberOfProjectTeams = 0;
             int numberOfProgrammerInChargeByTeam = 0;
             int numberOfProgrammerInChargeInTotal = 0;
-            int projectMonthToInt = 0;
-            int i;
-            double restOFday=0;
-            DateTime finishDateProject;
-            string projectFinishMonthStringName="";
-            int yearFinishproject;
-            int restOfDaysOfFinihProjectMonth=0;
-            int durationOfProjectToInt = Convert.ToInt32(durationOfProject);
-            for (i = 0; i < listOfTeams.Count; i++)
+            foreach (ProjectTeam team in listOfTeams)
             {
                 numberOfProjectTeams = listOfTeams.Count;
-                numberOfProgrammerInChargeByTeam = listOfTeams[i].GetListOfProgrammerInCharge().Count;
+                numberOfProgrammerInChargeByTeam = team.GetListOfProgrammerInCharge().Count;
 
-                foreach (ProgrammerIncharge programmer in listOfTeams[i].GetListOfProgrammerInCharge())
+                foreach (ProgrammerIncharge programmer in team.GetListOfProgrammerInCharge())
                 {
-                    projectFinishMonthStringName = programmer.GetActivityDateFinish().ToString("MM");
-                    projectMonthToInt = Int32.Parse(projectFinishMonthStringName);
-                    finishDateProject = programmer.GetActivityDateFinish();
-                    yearFinishproject=finishDateProject.Year;
-                    restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, projectMonthToInt);
-
-                   
-                    durationOfProject = programmer.GetDurationOfProject();
-                    projectStartMonthNameString=programmer.GetActivityDateStart().ToString("MM");
-                    durationOfProjectToInt = Convert.ToInt32(durationOfProject);
-                    restOFday=restOfDaysOfFinihProjectMonth-durationOfProjectToInt;
-
+                    numberOfProgrammerInChargeInTotal = numberOfProgrammerInChargeInTotal + 1;
                 }
 
             }
-            
-            numberOfProgrammerInChargeInTotal = numberOfProgrammerInChargeByTeam + i;
-
 
             Console.Write("IT company is actually composed of " + numberOfProjectTeams + " project teams," + " and " + numberOfProgrammerInChargeByTeam +
-            " programmers." +"\n" + "this month" + " " + currentMonthNumber + "," + " " + durationOfProject + " days " + "has been consumed by "
-            + numberOfProgrammerInChargeInTotal + " programmers," + " " + "and " + restOFday + " still in charge" + "\n"+ "\n");
-            
-            Console.Write("Project teams details"+"\n"+"\n");
+            " programmers." + "\n" + "this month" + " " + currentMonthNumber + "," + " " + day + " days " + "has been consumed by "
+            + numberOfProgrammerInChargeInTotal + " programmers," + " " + "and " + daysConsumedByProgrammers + " still in charge" + "\n" + "\n");
 
-            foreach(ProjectTeam team  in listOfTeams){
-                
-                if (team.fullTime==true){
+            Console.Write("Project teams details" + "\n" + "\n");
+            foreach (ProjectTeam team in listOfTeams)
+            {
+                if (team.fullTime == true)
+                {
                     Console.Write(" FullTime project Team:" + "\n");
                     Console.Write(team + "\n");
-                }else{
+                }
+                else
+                {
                     Console.Write(" PartTime project Team:" + "\n");
                     Console.Write(team + "\n");
                 }
-                
-               
             }
-
-
-
         }
-
 
         static void Main(string[] args)
         {
-
+            //creating the programmer in charge
             ProgrammerIncharge Guillermo = new ProgrammerIncharge("Guillermo", "Garcia");
             Guillermo.SetActivity("Working on IA");
             Guillermo.SetActivityDateStart("2015-02-01");
@@ -100,8 +76,10 @@ namespace MainClass
             William.SetActivityDateStart("2015-02-01");
             William.SetActivityDateFinish("2015-02-20");
 
+            //creating the project team
             ProjectTeam projectTeamPartTime = new ProjectTeam(false, 12);
 
+            //adding programmers to the team
             projectTeamPartTime.AddProgrammer(Guillermo);
             projectTeamPartTime.AddProgrammer(William);
 
@@ -116,18 +94,17 @@ namespace MainClass
             Amelia.SetActivityDateStart("2014-10-01");
             Amelia.SetActivityDateFinish("2014-10-20");
 
-            ProjectTeam projectTeamFullTime = new ProjectTeam(true,24);
+            ProjectTeam projectTeamFullTime = new ProjectTeam(true, 24);
 
             projectTeamFullTime.AddProgrammer(Mary);
             projectTeamFullTime.AddProgrammer(Amelia);
 
-           
+            //TO SAVE THE DATA INTO A XML FILE
+            projectTeamFullTime.SaveSystem(projectTeamFullTime, "projectTeamFullTime.xml");
+            projectTeamPartTime.SaveSystem(projectTeamPartTime, "projectTeamPartTime.xml");
 
-            /*projectTeamFullTime.SaveSystem(projectTeamFullTime, "projectTeamFullTime.xml");
-            projectTeamPartTime.SaveSystem(projectTeamPartTime, "projectTeamPartTime.xml");*/
 
-
-            // to create load the system from a xml and create objects
+            // TO CREATE OBJECTS FROM THE XML FILE USING NODES
             /*XmlDocument docFull = new XmlDocument();
             docFull.Load("projectTeamFullTime.xml");
             XmlNode topNodeFullTime = docFull.DocumentElement;
@@ -139,18 +116,18 @@ namespace MainClass
             XmlNode topNodePartTime = docPart.DocumentElement;
             ProjectTeam projectTeamPartTimeFromXml = new ProjectTeam(topNodePartTime);*/
 
-
+            //TO CREATE AN INSTANCE to THE ITCOMPANY
             ItCompany itCompany = new ItCompany();
 
+            //TO ADD TEAMS TO THE ITCOMPANY CLASS
             itCompany.AddProjectTeam(projectTeamFullTime);
             itCompany.AddProjectTeam(projectTeamPartTime);
 
+            //TO SEE THE REPORT STATUS
             itCompany.SystemStatusReport();
 
-
-
-
-
+            //TO GET UPDATE THE DATE
+            //projectTeamFullTime.UpdateSystem();
         }
     }
 }
