@@ -18,23 +18,22 @@ namespace MainClass
         }
         public void SystemStatusReport()
         {
-            /*Console.Write("Layout:" + "\n" +"\n");
+            Console.Write("Layout:" + "\n" +"\n");
             Console.Write("IT COMPANY-Report" + "\n"+ "\n");
-            Console.Write("nx=variable(like integer)"+ "\n "+ "\n");*/
 
-            string currentMonthNumber = DateTime.Now.ToString("MM");
-            string dateMonthName = "";
+            string currentMonthNumber = DateTime.Now.ToString("MMMM");
+            string projectStartMonthNameString = "";
 
             double durationOfProject = 0;
 
             int numberOfProjectTeams = 0;
             int numberOfProgrammerInChargeByTeam = 0;
             int numberOfProgrammerInChargeInTotal = 0;
-            int currentMonthToInt = 0;
+            int projectMonthToInt = 0;
             int i;
             double restOFday=0;
             DateTime finishDateProject;
-            string ProjectFinishMonthNumber="";
+            string projectFinishMonthStringName="";
             int yearFinishproject;
             int restOfDaysOfFinihProjectMonth=0;
             int durationOfProjectToInt = Convert.ToInt32(durationOfProject);
@@ -43,22 +42,19 @@ namespace MainClass
                 numberOfProjectTeams = listOfTeams.Count;
                 numberOfProgrammerInChargeByTeam = listOfTeams[i].GetListOfProgrammerInCharge().Count;
 
-
-
                 foreach (ProgrammerIncharge programmer in listOfTeams[i].GetListOfProgrammerInCharge())
                 {
-                    ProjectFinishMonthNumber = programmer.GetActivityDateFinish().ToString("MM");
-                    currentMonthToInt = Int32.Parse(ProjectFinishMonthNumber);
+                    projectFinishMonthStringName = programmer.GetActivityDateFinish().ToString("MM");
+                    projectMonthToInt = Int32.Parse(projectFinishMonthStringName);
                     finishDateProject = programmer.GetActivityDateFinish();
                     yearFinishproject=finishDateProject.Year;
-                    restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, currentMonthToInt);
+                    restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, projectMonthToInt);
 
                    
                     durationOfProject = programmer.GetDurationOfProject();
-                    dateMonthName=programmer.GetActivityDateStart().ToString("MM");
-                    durationOfProjectToInt = Convert.ToInt32(dateMonthName);
-                    restOFday=durationOfProject-durationOfProjectToInt;
-                    Console.Write(durationOfProjectToInt);
+                    projectStartMonthNameString=programmer.GetActivityDateStart().ToString("MM");
+                    durationOfProjectToInt = Convert.ToInt32(durationOfProject);
+                    restOFday=restOfDaysOfFinihProjectMonth-durationOfProjectToInt;
 
                 }
 
@@ -67,12 +63,24 @@ namespace MainClass
             numberOfProgrammerInChargeInTotal = numberOfProgrammerInChargeByTeam + i;
 
 
-
-
-
             Console.Write("IT company is actually composed of " + numberOfProjectTeams + " project teams," + " and " + numberOfProgrammerInChargeByTeam +
-            " programmers." +"\n" + "this month" + " " + dateMonthName + "," + " " + durationOfProject + " days " + "has been consumed by "
-            + numberOfProgrammerInChargeInTotal + " programmers," + " " + "and " + restOfDaysOfFinihProjectMonth + " still in charge" + "\n");
+            " programmers." +"\n" + "this month" + " " + currentMonthNumber + "," + " " + durationOfProject + " days " + "has been consumed by "
+            + numberOfProgrammerInChargeInTotal + " programmers," + " " + "and " + restOFday + " still in charge" + "\n"+ "\n");
+            
+            Console.Write("Project teams details"+"\n"+"\n");
+
+            foreach(ProjectTeam team  in listOfTeams){
+                
+                if (team.fullTime==true){
+                    Console.Write(" FullTime project Team:" + "\n");
+                    Console.Write(team + "\n");
+                }else{
+                    Console.Write(" PartTime project Team:" + "\n");
+                    Console.Write(team + "\n");
+                }
+                
+               
+            }
 
 
 
@@ -92,7 +100,7 @@ namespace MainClass
             William.SetActivityDateStart("2015-02-01");
             William.SetActivityDateFinish("2015-02-20");
 
-            ProjectTeam projectTeamPartTime = new ProjectTeam(false);
+            ProjectTeam projectTeamPartTime = new ProjectTeam(false, 12);
 
             projectTeamPartTime.AddProgrammer(Guillermo);
             projectTeamPartTime.AddProgrammer(William);
@@ -108,7 +116,7 @@ namespace MainClass
             Amelia.SetActivityDateStart("2014-10-01");
             Amelia.SetActivityDateFinish("2014-10-20");
 
-            ProjectTeam projectTeamFullTime = new ProjectTeam(true);
+            ProjectTeam projectTeamFullTime = new ProjectTeam(true,24);
 
             projectTeamFullTime.AddProgrammer(Mary);
             projectTeamFullTime.AddProgrammer(Amelia);

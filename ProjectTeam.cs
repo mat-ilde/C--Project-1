@@ -23,6 +23,20 @@ namespace ProjectTeamProgrammerInCharge
         [XmlElement(
             ElementName = "FullTime")]
         public bool fullTime;
+         [XmlElement(
+            ElementName = "Cost")]
+        public int cost;
+
+        public int GetCost()
+        {
+            return this.cost;
+        }
+
+        public void SetCost(int cost)
+        {
+            this.cost = cost;
+        }
+    
           public void SetTypeofJob(Boolean fullTime)
         {
             this.fullTime = fullTime;
@@ -37,9 +51,10 @@ namespace ProjectTeamProgrammerInCharge
 
         }
 
-        public ProjectTeam(bool fullTime)
+        public ProjectTeam(bool fullTime, int cost)
         {
             this.fullTime = fullTime;
+            this.cost=cost;
 
         }
         //load function as constructor return ProjectTeam from xml file
@@ -86,7 +101,8 @@ namespace ProjectTeamProgrammerInCharge
                 projectTeamString = projectTeamString + programmerString;
 
             }
-            return projectTeamString + " Fulltime Team : " + GetTypeofJob() + " \n ";
+            return projectTeamString + " Fulltime Team : " + GetTypeofJob() 
+            + " (total cost= " + GetCost() + " $)" +"\n";
         }
 
         public List<ProgrammerIncharge> GetListOfProgrammerInCharge()

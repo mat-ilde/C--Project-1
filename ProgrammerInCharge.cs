@@ -175,15 +175,12 @@ namespace EmployeeDetailsImplementation
 
             
 
-            int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, currentMonthToInt);
-            //Console.Write(currentMonthToInt);
+            //int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(yearFinishproject, currentMonthToInt);
+            int restOfDaysOfFinihProjectMonth = DateTime.DaysInMonth(2022, 8);
 
-
-            //from 1/07/2022 to 21/7/2022  (duration = 21 days) this month=31 days
-            //this month tiene que ser esta fecha
 
             return GetLastName() + "," + " " + GetFirtsName() + "," + " in charge of " + GetActivity() + " from " + GetActivityDateStart().ToShortDateString() + " to " + GetActivityDateFinish().ToShortDateString()
-            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + restOfDaysOfFinihProjectMonth + " days " + "(total cost = n12 $) " + "\n";
+            + " (duration = " + GetDurationOfProject() + " days "+")," + " this month = " + restOfDaysOfFinihProjectMonth + " days " + "\n";
         }
         public void SaveSystem(ProgrammerIncharge programmer, String fileName)
         {
