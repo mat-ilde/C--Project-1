@@ -24,6 +24,7 @@ namespace MainClass
             string currentMonthNumber = DateTime.Now.ToString("MMMM");
             DateTime currentMonth = DateTime.Now;
             string day = currentMonth.Day.ToString();
+            //change the int month to get the current month
             int totalDaysOfTheMonth = DateTime.DaysInMonth(2022, 8);
             int daysToInt = Convert.ToInt32(day);
             int daysConsumedByProgrammers = totalDaysOfTheMonth - daysToInt;

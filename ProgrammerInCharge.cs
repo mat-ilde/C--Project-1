@@ -10,8 +10,6 @@ using System.Xml;
 namespace EmployeeDetailsImplementation
 {
 
-
-
     [XmlRoot(ElementName = "ProgrammerIncharge")]
     // class ProgrammerIncharge implementing the interface Employee
     public class ProgrammerIncharge : IEmployee
